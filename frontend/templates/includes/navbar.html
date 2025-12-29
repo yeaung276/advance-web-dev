@@ -11,32 +11,14 @@
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/swagger/">Swagger</a>
+          <a class="nav-link" href="{% url 'docs' %}">Documentation</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/docs/">Documentation</a>
+            <a class="nav-link" href="/admin">Admin</a>
         </li>
-      </ul>
-
-      <ul class="navbar-nav">
-        {% if user.is_authenticated %}
-          <li class="nav-item">
-            <span class="navbar-text me-3">
-              {{ user.username }}
-            </span>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'admin:logout' %}">
-              Logout
-            </a>
-          </li>
-        {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'admin:login' %}">
-              Login
-            </a>
-          </li>
-        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="https://github.com/astrocatalogs/supernovae">Original Data</a>
+        </li>
       </ul>
     </div>
   </div>
