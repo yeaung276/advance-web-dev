@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'sources.apps.SourcesConfig',
     "galaxies.apps.GalaxiesConfig",
+    "frontend.apps.FrontendConfig",
 ]
 
 MIDDLEWARE = [

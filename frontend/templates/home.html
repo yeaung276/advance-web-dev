@@ -1,0 +1,70 @@
+{% extends "includes/base.html" %}
+
+{% block title %}Home | Supernovae{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+  <h1 class="display-5 fw-bold">Supernovae Platform</h1>
+  <p class="lead text-muted">
+    Unified access to supernova observations and measurements
+  </p>
+</div>
+
+<div class="row g-4">
+
+  <div class="col-md-4">
+    <a href="#" class="card h-100 text-decoration-none">
+      <div class="card-body">
+        <h5>Observations</h5>
+        <p>Recorded observation events</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="#" class="card h-100 text-decoration-none">
+      <div class="card-body">
+        <h5>Measurements</h5>
+        <p>Photometry and spectroscopy data</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="#" class="card h-100 text-decoration-none">
+      <div class="card-body">
+        <h5>Instruments</h5>
+        <p>Telescopes and sensors</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="#" class="card h-100 text-decoration-none">
+      <div class="card-body">
+        <h5>Surveys</h5>
+        <p>Survey-level aggregations</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="/docs/" class="card h-100 text-decoration-none">
+      <div class="card-body">
+        <h5>API Docs</h5>
+        <p>OpenAPI / REST documentation</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="/admin/" class="card h-100 text-decoration-none border-primary">
+      <div class="card-body">
+        <h5>Admin</h5>
+        <p>Data and user management</p>
+      </div>
+    </a>
+  </div>
+
+</div>
+{% endblock %}
