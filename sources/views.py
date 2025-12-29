@@ -1,11 +1,9 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from drf_yasg.utils import swagger_auto_schema
 
-from .models import *
+from . import models
 
 class SourceViewSet(viewsets.ViewSet):
-    @swagger_auto_schema(operation_description="get all sources")
     def list(self, request):
         return Response({'message': 'List all sources'})
     

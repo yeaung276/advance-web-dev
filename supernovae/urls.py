@@ -36,6 +36,7 @@ urlpatterns = [
     path('api/', 
         include([
             path("sources/", include("sources.urls"), name="source"),
+            path("galaxies/", include("galaxies.urls"), name="galaxy"),
         ])
     ),
 ]

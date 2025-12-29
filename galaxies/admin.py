@@ -1,3 +1,8 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+class GalaxyAdmin(admin.ModelAdmin):
+    list_display = ("name", "hostra", "hostdec")
+    
+admin.site.register(models.Galaxy, GalaxyAdmin)
+    
