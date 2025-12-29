@@ -4,5 +4,6 @@ from . import models
 @admin.register(models.Galaxy)
 class GalaxyAdmin(admin.ModelAdmin):
     list_display = ("name", "hostra", "hostdec")
+    search_fields = ("name",)
     
     

@@ -40,10 +40,15 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'sources.apps.SourcesConfig',
-    "galaxies.apps.GalaxiesConfig",
-    "subtypes.apps.SubtypesConfig",
-    "frontend.apps.FrontendConfig",
+    'galaxies.apps.GalaxiesConfig',
+    'subtypes.apps.SubtypesConfig',
+    'events.apps.EventsConfig',
+    'frontend.apps.FrontendConfig',
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": []
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
