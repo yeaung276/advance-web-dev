@@ -1,0 +1,47 @@
+<h5 class="text-uppercase text-muted mb-4">Navigation</h5>
+
+<div class="list-group list-group-flush">
+
+  <a href="{% url 'frontend:search_event' %}" class="list-group-item list-group-item-action">
+    <h6 class="mb-1">Search Supernova</h6>
+    <small class="text-muted">
+      Get OSC compliant Supernova data
+    </small>
+  </a>
+
+  <a href="{% url 'frontend:create_event' %}" class="list-group-item list-group-item-action">
+    <h6 class="mb-1">Record Supernova</h6>
+    <small class="text-muted">
+      Create a record of supernova event.
+    </small>
+  </a>
+
+  <a href="{% url 'frontend:galaxy_sn_count' %}" class="list-group-item list-group-item-action">
+    <h6 class="mb-1">Galaxy Supernova Counts</h6>
+    <small class="text-muted">
+      Galaxies ranked by total hosted supernova events
+    </small>
+  </a>
+
+  <a href="{% url 'frontend:galaxy_sn_diversity' %}" class="list-group-item list-group-item-action">
+    <h6 class="mb-1">Galaxy Supernova Diversity</h6>
+    <small class="text-muted">
+      Galaxies ranked by the variety of hosted supernova types
+    </small>
+  </a>
+
+  <a href="/docs/" class="list-group-item list-group-item-action">
+    <h6 class="mb-1">API Documentation</h6>
+    <small class="text-muted">
+      OpenAPI and REST interface
+    </small>
+  </a>
+
+  <a href="/admin/" class="list-group-item list-group-item-action">
+    <h6 class="mb-1">Administration</h6>
+    <small class="text-muted">
+      Data and user management
+    </small>
+  </a>
+
+</div>

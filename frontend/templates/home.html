@@ -1,70 +1,113 @@
 {% extends "includes/base.html" %}
 
-{% block title %}Home | Supernovae{% endblock %}
+{% block title %}Documentation | Supernovae{% endblock %}
 
 {% block content %}
-<div class="text-center mb-5">
-  <h1 class="display-5 fw-bold">Supernovae Platform</h1>
-  <p class="lead text-muted">
-    Unified access to supernova observations and measurements
+
+<div class="mb-5">
+  <h1 class="fw-bold">Supernovae Platform Documentation</h1>
+  <p class="text-muted fs-5">
+    Setup instructions, administrative access, and data provenance.
   </p>
 </div>
 
-<div class="row g-4">
+<!-- Installation Instructions -->
+<section class="mb-5">
+  <h3 class="fw-semibold mb-3">Installation & Setup</h3>
 
-  <div class="col-md-4">
-    <a href="#" class="card h-100 text-decoration-none">
-      <div class="card-body">
-        <h5>Observations</h5>
-        <p>Recorded observation events</p>
-      </div>
-    </a>
+  <p class="text-muted">
+    The platform uses <strong>uv</strong> for dependency management and execution.
+    Follow the steps below to run the system locally.
+  </p>
+
+  <div class="card">
+    <div class="card-body">
+      <ol class="mb-0">
+        <li class="mb-2">
+          Install all project dependencies:
+          <pre class="mt-2 mb-0"><code>uv install</code></pre>
+        </li>
+
+        <li class="mb-2">
+          Create and migrate the database schema:
+          <pre class="mt-2 mb-0"><code>uv run manage.py migrate</code></pre>
+        </li>
+
+        <li class="mb-2">
+          Insert all required initial data:
+          <pre class="mt-2 mb-0"><code>uv run scripts/bulk_insert.py</code></pre>
+        </li>
+
+        <li>
+          Start the development server:
+          <pre class="mt-2 mb-0"><code>uv run manage.py runserver</code></pre>
+        </li>
+      </ol>
+    </div>
   </div>
+</section>
 
-  <div class="col-md-4">
-    <a href="#" class="card h-100 text-decoration-none">
-      <div class="card-body">
-        <h5>Measurements</h5>
-        <p>Photometry and spectroscopy data</p>
-      </div>
-    </a>
+<!-- Admin Login -->
+<section class="mb-5">
+  <h3 class="fw-semibold mb-3">Admin Panel Access</h3>
+
+  <p class="text-muted">
+    The Django admin panel is used for managing data entries, users, and internal
+    platform configuration.
+  </p>
+
+  <div class="card">
+    <div class="card-body">
+      <p class="mb-3">
+        Use the following credentials to log into the admin interface:
+      </p>
+
+      <ul class="mb-3">
+        <li>
+          <strong>Username:</strong> <code>admin</code>
+        </li>
+        <li>
+          <strong>Password:</strong> <code>admin</code>
+        </li>
+      </ul>
+
+      <a href="/admin/" class="btn btn-outline-primary">
+        Go to Admin Panel
+      </a>
+    </div>
   </div>
+</section>
 
-  <div class="col-md-4">
-    <a href="#" class="card h-100 text-decoration-none">
-      <div class="card-body">
-        <h5>Instruments</h5>
-        <p>Telescopes and sensors</p>
-      </div>
-    </a>
+<!-- Original Data -->
+<section>
+  <h3 class="fw-semibold mb-3">Original Data Source</h3>
+
+  <p class="text-muted">
+    The data used in this platform is derived from the Open Supernova Catalog (OSC),
+    a community-driven compilation of supernova observations from multiple surveys
+    and publications.
+  </p>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Open Supernova Catalog (OSC)</h5>
+
+      <p class="card-text text-muted">
+        OSC aggregates heterogeneous supernova datasets into a unified,
+        machine-readable format, enabling large-scale analysis and cross-survey
+        comparison.
+      </p>
+
+      <a
+        href="https://github.com/astrocatalogs/supernovae"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-outline-secondary"
+      >
+        View Original Dataset
+      </a>
+    </div>
   </div>
+</section>
 
-  <div class="col-md-4">
-    <a href="#" class="card h-100 text-decoration-none">
-      <div class="card-body">
-        <h5>Surveys</h5>
-        <p>Survey-level aggregations</p>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-md-4">
-    <a href="/docs/" class="card h-100 text-decoration-none">
-      <div class="card-body">
-        <h5>API Docs</h5>
-        <p>OpenAPI / REST documentation</p>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-md-4">
-    <a href="/admin/" class="card h-100 text-decoration-none border-primary">
-      <div class="card-body">
-        <h5>Admin</h5>
-        <p>Data and user management</p>
-      </div>
-    </a>
-  </div>
-
-</div>
 {% endblock %}

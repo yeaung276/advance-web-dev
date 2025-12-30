@@ -1,0 +1,79 @@
+{% extends "includes/base.html" %}
+
+{% block title %}Event Search | Supernovae{% endblock %}
+
+{% block content %}
+
+<h1 class="fw-bold mb-4">Event Detail Lookup</h1>
+
+<form method="get" action="/events/search" class="mb-4">
+
+  <div class="mb-2">
+    <label for="event-name" class="form-label fw-semibold">
+      Supernova Event Name
+    </label>
+
+    <input
+      id="event-name"
+      type="text"
+      name="name"
+      class="form-control"
+      placeholder="e.g. SN2014J"
+      value="{{ query_name }}"
+      required
+    >
+
+    <div class="form-text">
+      Retrieve a specific event by name.
+      To see available event names, visit
+      <a href="/docs/" target="_blank">the API documentation</a>
+      and use the <code>name</code> field.
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-2" type="submit">
+    Search
+  </button>
+
+</form>
+
+{% if error %}
+  <div class="alert alert-danger">
+    {{ error }}
+  </div>
+{% endif %}
+
+<div class="d-flex justify-content-between align-items-center mt-5 mb-2">
+  <h4 class="mb-0">Event Detail (JSON Response)</h4>
+  <button
+    class="btn btn-sm btn-outline-secondary"
+    type="button"
+    onclick="copyJson()"
+  >
+    Copy JSON
+  </button>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <pre id="json-output" class="mb-0"></pre>
+  </div>
+</div>
+
+<!-- Safely embed JSON -->
+{{ event_json|json_script:"event-data" }}
+
+<script>
+  const data = JSON.parse(
+    document.getElementById("event-data").textContent
+  );
+
+  const formatted = JSON.stringify(data, null, 2);
+  document.getElementById("json-output").textContent = formatted;
+
+  function copyJson() {
+    navigator.clipboard.writeText(formatted);
+  }
+</script>
+
+{% endblock %}

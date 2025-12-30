@@ -1,6 +1,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.decorators import api_view
 
 from django.shortcuts import get_object_or_404
 
@@ -57,3 +58,59 @@ class EventViewSet(ViewSet):
     #     serializer.is_valid(raise_exception=True)
     #     serializer.save()
     #     return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    
+@api_view(["GET"])
+def galaxy_by_supernova_count(request):
+    rows = (
+        models.HostGalaxy.objects
+        .select_related("galaxy", "event")
+        .values("galaxy__id", "galaxy__name", "event__name")
+        .distinct()
+    )
+
+    result = {}
+    for r in rows:
+        g = r["galaxy__name"]
+        result.setdefault(g, set()).add(r["event__name"])
+
+    data = [
+        {
+            "galaxy": g,
+            "supernova_events": sorted(list(events)),
+        }
+        for g, events in result.items()
+    ]
+
+    return Response(data)
+
+
+@api_view(["GET"])
+def galaxy_by_supernova_diversity(request):
+    rows = (
+        models.HostGalaxy.objects
+        .select_related("galaxy")
+        .values(
+            "galaxy__id",
+            "galaxy__name",
+            "event__claimed_types__sub_type__name",
+        )
+        .exclude(event__claimed_types__sub_type__isnull=True)
+        .distinct()
+    )
+
+    result = {}
+    for r in rows:
+        g = r["galaxy__name"]
+        t = r["event__claimed_types__sub_type__name"]
+        result.setdefault(g, set()).add(t)
+
+    data = [
+        {
+            "galaxy": g,
+            "supernova_types": sorted(list(types)),
+        }
+        for g, types in result.items()
+    ]
+
+    return Response(data)

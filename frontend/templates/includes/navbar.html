@@ -1,25 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'frontend:home' %}">
+    <a class="navbar-brand fw-bold" href="{% url 'frontend:home' %}">
       Supernovae
     </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'docs' %}">Documentation</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin">Admin</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="https://github.com/astrocatalogs/supernovae">Original Data</a>
-        </li>
-      </ul>
-    </div>
   </div>
 </nav>
