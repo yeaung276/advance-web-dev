@@ -30,6 +30,20 @@
     </small>
   </a>
 
+    <a href="{% url 'frontend:event_sn_uncertainty' %}" class="list-group-item list-group-item-action">
+    <h6 class="mb-1">Event Uncertainty</h6>
+    <small class="text-muted">
+      Events ranked by disagreement across observational sources.
+    </small>
+  </a>
+
+  <a href="{% url 'frontend:subtype_sn_uncertainty' %}" class="list-group-item list-group-item-action">
+    <h6 class="mb-1">Type Conflicts</h6>
+    <small class="text-muted">
+      Subtype classifications with inconsistent or conflicting claims.
+    </small>
+  </a>
+
   <a href="/docs/" class="list-group-item list-group-item-action">
     <h6 class="mb-1">API Documentation</h6>
     <small class="text-muted">

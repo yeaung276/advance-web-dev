@@ -10,7 +10,7 @@
   <div>
     <h1 class="fw-bold mb-1">{{ title }}</h1>
     <p class="text-muted mb-0">
-      Top galaxies ranked by observational statistics
+      Ranked by observational statistics(Top 5)
     </p>
   </div>
 
@@ -37,13 +37,13 @@
 <script>
   const labels = [
     {% for row in results %}
-      "{{ row.galaxy__name }}"{% if not forloop.last %},{% endif %}
+      "{{ row|get_item:label_key }}"{% if not forloop.last %},{% endif %}
     {% endfor %}
   ];
 
   const dataValues = [
     {% for row in results %}
-      {{ row|get_item:metric }}{% if not forloop.last %},{% endif %}
+      {{ row|get_item:metric_key }}{% if not forloop.last %},{% endif %}
     {% endfor %}
   ];
 
@@ -54,7 +54,7 @@
     data: {
       labels: labels,
       datasets: [{
-        label: "{{ title }}",
+        label: "{{ label }}",
         data: dataValues,
         borderWidth: 1
       }]
@@ -66,6 +66,10 @@
           beginAtZero: true,
           ticks: {
             precision: 0
+          },
+          title: {
+            display: true,
+            text: "{{ label }}"
           }
         }
       }

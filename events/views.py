@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import api_view
 
+from django.db.models import Count, F
 from django.shortcuts import get_object_or_404
 
 from drf_yasg import openapi
@@ -114,3 +115,46 @@ def galaxy_by_supernova_diversity(request):
     ]
 
     return Response(data)
+
+@api_view(["GET"])
+def supernova_uncertainty(request):
+    queryset = (
+        models.Event.objects
+        .values("name")
+        .annotate(
+            subtype_sources=Count("claimed_types__source", distinct=True),
+            host_sources=Count("host_galaxies__source", distinct=True),
+        )
+        .annotate(
+            total_sources=(
+                F("subtype_sources") +
+                F("host_sources") 
+            )
+        )
+        .order_by("-total_sources")
+    )
+    
+    return Response(queryset)
+
+@api_view(["GET"])
+def subtype_with_conflicting_sn(request):
+    # find events with multiple subtype claims
+    conflicted_events = (
+        models.ClaimedType.objects
+        .values("event")
+        .annotate(subtype_count=Count("sub_type", distinct=True))
+        .filter(subtype_count__gt=1)
+        .values_list("event", flat=True)
+    )
+
+    # count how often each subtype appears in conflicted events
+    queryset = (
+        models.ClaimedType.objects
+        .filter(event__in=conflicted_events)
+        .values("sub_type__name")
+        .annotate(
+            conflicted_event_count=Count("event", distinct=True)
+        )
+        .order_by("-conflicted_event_count")
+    )
+    return Response(queryset)
