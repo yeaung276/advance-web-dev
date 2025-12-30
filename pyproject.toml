@@ -1,7 +1,7 @@
 [project]
-name = "awd"
+name = "supernovae"
 version = "0.1.0"
-description = "Add your description here"
+description = "Supernovae dataset"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

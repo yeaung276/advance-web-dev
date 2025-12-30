@@ -16,3 +16,7 @@ User: admin\\
 Email: admin@gmail.com\\
 Password: admin\\
 
+# Seeding the data
+`uv run manage.py migrate` to create database.
+`uv run scripts/bulk_import.py` to add seed data.
+

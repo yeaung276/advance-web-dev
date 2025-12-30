@@ -4,4 +4,4 @@ from .models import Galaxy
 class GalaxySerializer(serializers.ModelSerializer):
     class Meta:
         model = Galaxy
-        fields = ["id", "name", "hostra", "hostdec"]
+        fields = ["id", "name"]

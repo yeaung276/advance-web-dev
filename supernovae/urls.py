@@ -24,7 +24,7 @@ schema_view = get_swagger_schema_view(
     openapi.Info(
         title="Supernovae API",
         default_version="1.0.0",
-        description="API documentation for supernovae record"
+        description="API documentation for supernovae record",
     ),
     public=True,
 )
