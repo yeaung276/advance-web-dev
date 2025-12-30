@@ -35,7 +35,7 @@ Source.objects.all().delete()
 # Load all galaxies
 with open(DATA_DIRECTORY / "galaxies.json", "r") as f:
     data = json.load(f)
-    
+
 galaxies = [Galaxy(name=row["name"]) for row in data]
 
 Galaxy.objects.bulk_create(galaxies, batch_size=BATCH_SIZE)
@@ -51,53 +51,72 @@ SubType.objects.bulk_create(subtypes, batch_size=BATCH_SIZE)
 # Load all Sources
 with open(DATA_DIRECTORY / "sources.json", "r") as f:
     data = json.load(f)
-    
+
 sources = [
     Source(
-        name=row["name"], url=row.get("url"), 
-        bibcode=row.get("bibcode"), doi=row.get("doi"), 
-        secondary=row.get("secondary", False)
-    ) for row in data
+        name=row["name"],
+        url=row.get("url"),
+        bibcode=row.get("bibcode"),
+        doi=row.get("doi"),
+        secondary=row.get("secondary", False),
+    )
+    for row in data
 ]
-    
+
 Source.objects.bulk_create(sources, batch_size=BATCH_SIZE)
 
 # Import all supernova events
 # Read the data
 with open(DATA_DIRECTORY / "supernova.json", "r") as f:
     data = json.load(f)
-    
+
 for row in data:
     # create source alias -> id map
-    source_alias = {s['alias'] : Source.objects.get(name=s['name'], url=s['url']) for s in row["sources"]}
-    
+    source_alias = {
+        s["alias"]: Source.objects.get(name=s["name"], url=s["url"])
+        for s in row["sources"]
+    }
+
     # create event
     event = Event.objects.create(name=row["name"])
-    
+
     # create attributes for each source
     attributes = []
     for attr in row["attributes"]:
         for s in attr["source"].split(","):
             attributes.append(
-                Attribute(name=attr["name"], value=attr["value"], unit=attr["unit"] or "", source=source_alias[s], event=event)
+                Attribute(
+                    name=attr["name"],
+                    value=attr["value"],
+                    unit=attr["unit"] or "",
+                    source=source_alias[s],
+                    event=event,
+                )
             )
     Attribute.objects.bulk_create(attributes, batch_size=BATCH_SIZE)
-            
+
     # create hostgalaxy
     host_galaxy = []
     for g in row["hostgalaxy"]:
         for s in g["source"].split(","):
             host_galaxy.append(
-                HostGalaxy(galaxy=Galaxy.objects.get(name=g['name']), source=source_alias[s], event=event)
+                HostGalaxy(
+                    galaxy=Galaxy.objects.get(name=g["name"]),
+                    source=source_alias[s],
+                    event=event,
+                )
             )
     HostGalaxy.objects.bulk_create(host_galaxy)
-    
+
     # create type classification(claimedType)
     claimed_type = []
     for c in row["subtype"]:
         for s in c["source"].split(","):
             claimed_type.append(
-                ClaimedType(sub_type=SubType.objects.get(name=c["name"]), source=source_alias[s], event=event)
+                ClaimedType(
+                    sub_type=SubType.objects.get(name=c["name"]),
+                    source=source_alias[s],
+                    event=event,
+                )
             )
     ClaimedType.objects.bulk_create(claimed_type)
-    

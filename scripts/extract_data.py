@@ -32,6 +32,7 @@ supernova_results = []
 
 # ================= HELPERS =================
 
+
 def bump(n: int):
     global total_count
     total_count += n
@@ -50,6 +51,7 @@ def safe_float(v):
 
 def source_key(s):
     return s.get("bibcode") or s.get("doi") or s.get("url")
+
 
 # ================= MAIN =================
 try:
@@ -113,51 +115,53 @@ try:
                 bump(1)  # unique host galaxy
 
         # ---------- ATTRIBUTES ----------
-        attribute_count = sum(
-            1 for k in ATTRIBUTE_KEYS if k in sn and sn[k]
-        )
+        attribute_count = sum(1 for k in ATTRIBUTE_KEYS if k in sn and sn[k])
         bump(attribute_count)
 
         # ---------- BUILD SUPERNOVA OUTPUT ----------
 
-        supernova_results.append({
-            "name": sn_name,
-            "sources": [
-                {
-                    "name": s.get("name"),
-                    "doi": s.get("doi"),
-                    "secondary": s.get("secondary", False),
-                    "url": s.get("url"),
-                    "bibcode": s.get("bibcode"),
-                    "alias": s.get("alias")
-                }
-                for s in sources
-            ],
-            "hostgalaxy": [
-                {
-                    "name": h.get("value"),
-                    "source": h.get("source"),
-                }
-                for h in hosts
-            ],
-            "subtype": [
-                {
-                    "name": t.get("value"),
-                    "source": t.get("source"),
-                }
-                for t in subtypes
-            ],
-            "attributes": [
-                {
-                    "name": k,
-                    "value": safe_float(sn[k][0].get("value")),
-                    "unit": sn[k][0].get("u_value"),
-                    "source": sn[k][0].get("source"),
-                }
-                for k in ATTRIBUTE_KEYS
-                if k in sn and sn[k] and safe_float(sn[k][0].get("value")) is not None
-            ],
-        })
+        supernova_results.append(
+            {
+                "name": sn_name,
+                "sources": [
+                    {
+                        "name": s.get("name"),
+                        "doi": s.get("doi"),
+                        "secondary": s.get("secondary", False),
+                        "url": s.get("url"),
+                        "bibcode": s.get("bibcode"),
+                        "alias": s.get("alias"),
+                    }
+                    for s in sources
+                ],
+                "hostgalaxy": [
+                    {
+                        "name": h.get("value"),
+                        "source": h.get("source"),
+                    }
+                    for h in hosts
+                ],
+                "subtype": [
+                    {
+                        "name": t.get("value"),
+                        "source": t.get("source"),
+                    }
+                    for t in subtypes
+                ],
+                "attributes": [
+                    {
+                        "name": k,
+                        "value": safe_float(sn[k][0].get("value")),
+                        "unit": sn[k][0].get("u_value"),
+                        "source": sn[k][0].get("source"),
+                    }
+                    for k in ATTRIBUTE_KEYS
+                    if k in sn
+                    and sn[k]
+                    and safe_float(sn[k][0].get("value")) is not None
+                ],
+            }
+        )
 
 # ================= WRITE OUTPUT FILES =================
 finally:
