@@ -38,6 +38,7 @@ urlpatterns = [
             path("sources/", include("sources.urls"), name="source"),
             path("galaxies/", include("galaxies.urls"), name="galaxy"),
             path("subtypes/", include("subtypes.urls"), name="subtype"),
+            path("events/", include("events.urls"), name="event"),
         ])
     ),
 ]
