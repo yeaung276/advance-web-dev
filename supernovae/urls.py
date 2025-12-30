@@ -14,8 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
+
+from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.authentication import (
+    SessionAuthentication,
+    TokenAuthentication,
+)
 
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view as get_swagger_schema_view
@@ -27,18 +34,26 @@ schema_view = get_swagger_schema_view(
         description="API documentation for supernovae record",
     ),
     public=True,
+    authentication_classes=[
+        SessionAuthentication,
+        TokenAuthentication,
+    ],
 )
 
 urlpatterns = [
-    path('', include("frontend.urls"), name="frontend"),
-    path('admin/', admin.site.urls, name="admin"),
+    path("", include("frontend.urls"), name="frontend"),
+    path("admin/", admin.site.urls, name="admin"),
     path("docs/", schema_view.with_ui("swagger", cache_timeout=10), name="docs"),
-    path('api/', 
-        include([
-            path("sources/", include("sources.urls"), name="source"),
-            path("galaxies/", include("galaxies.urls"), name="galaxy"),
-            path("subtypes/", include("subtypes.urls"), name="subtype"),
-            path("events/", include("events.urls"), name="event"),
-        ])
+    path("accounts/", include("django.contrib.auth.urls")),
+    path(
+        "api/",
+        include(
+            [
+                path("sources/", include("sources.urls"), name="source"),
+                path("galaxies/", include("galaxies.urls"), name="galaxy"),
+                path("subtypes/", include("subtypes.urls"), name="subtype"),
+                path("events/", include("events.urls"), name="event"),
+            ]
+        ),
     ),
 ]
