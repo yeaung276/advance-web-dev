@@ -1,0 +1,322 @@
+[
+  {
+    "name": "LEDA 649564",
+    "source": "1,3"
+  },
+  {
+    "name": "NGC 1964",
+    "source": "2,5"
+  },
+  {
+    "name": "LEDA 760207",
+    "source": "2,4"
+  },
+  {
+    "name": "UGC 3084",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 2785424",
+    "source": "1,2"
+  },
+  {
+    "name": "NGC 57",
+    "source": "2,3"
+  },
+  {
+    "name": "CGCG 038-055",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 1369106",
+    "source": "2,3"
+  },
+  {
+    "name": "ESO 494-G16",
+    "source": "2,3"
+  },
+  {
+    "name": "KUG 0330-012",
+    "source": "2,3"
+  },
+  {
+    "name": "WISEA J020253.98-040719.6",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 2114565",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 920111",
+    "source": "1,2"
+  },
+  {
+    "name": "IC 738",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 2161996",
+    "source": "2,3"
+  },
+  {
+    "name": "ESO 437-G31",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 1412398",
+    "source": "2,3"
+  },
+  {
+    "name": "NVSS J163651+262657",
+    "source": "1,2"
+  },
+  {
+    "name": "ESO 174-G1",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 103417",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 1850553",
+    "source": "2,3"
+  },
+  {
+    "name": "IC 3230",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 1212848",
+    "source": "2,3"
+  },
+  {
+    "name": "UGC 8817",
+    "source": "1,3"
+  },
+  {
+    "name": "MCG -02-01-49",
+    "source": "2,3"
+  },
+  {
+    "name": "NGC 5731",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 133617",
+    "source": "2,3"
+  },
+  {
+    "name": "ESO 566-G27",
+    "source": "2,4"
+  },
+  {
+    "name": "ESO 423-G12",
+    "source": "1,2"
+  },
+  {
+    "name": "ESO 162-G18",
+    "source": "2,6"
+  },
+  {
+    "name": "ESO 162-G 018",
+    "source": "2,4"
+  },
+  {
+    "name": "NGC 1672",
+    "source": "2,3"
+  },
+  {
+    "name": "UGC 5900",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 1446532",
+    "source": "1,2"
+  },
+  {
+    "name": "NGC 6223",
+    "source": "2,3"
+  },
+  {
+    "name": "MCG -02-33-006",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 1939877",
+    "source": "2,3"
+  },
+  {
+    "name": "ESO 185-31",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 148714",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 525231",
+    "source": "1,2"
+  },
+  {
+    "name": "LEDA 1761126",
+    "source": "2,3"
+  },
+  {
+    "name": "CGCG 137-020",
+    "source": "2,3,5"
+  },
+  {
+    "name": "WISEA J235527.67-345230.5",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 1277209",
+    "source": "2,3"
+  },
+  {
+    "name": "ESO 500-G34",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 926278",
+    "source": "2,3"
+  },
+  {
+    "name": "IC 1613",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 129433",
+    "source": "2,3"
+  },
+  {
+    "name": "NGC 2504",
+    "source": "2,3"
+  },
+  {
+    "name": "CGCG 085-026",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 3081787",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 1052095",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 1461135",
+    "source": "2,3"
+  },
+  {
+    "name": "CGCG 048-110",
+    "source": "2,3"
+  },
+  {
+    "name": "NGC 2650",
+    "source": "2,3"
+  },
+  {
+    "name": "MCG +10-15-06",
+    "source": "2,3"
+  },
+  {
+    "name": "CGCG 458-021",
+    "source": "2,4"
+  },
+  {
+    "name": "CGCG 559-004",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 985069",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 518668",
+    "source": "1,2"
+  },
+  {
+    "name": "UGC 4671",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 360010",
+    "source": "1,2"
+  },
+  {
+    "name": "NGC 4631",
+    "source": "2,3"
+  },
+  {
+    "name": "MCG -02-08-07",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 2372058",
+    "source": "2,3"
+  },
+  {
+    "name": "UGC 6204",
+    "source": "2,3"
+  },
+  {
+    "name": "NGC 1682",
+    "source": "2,3"
+  },
+  {
+    "name": "CSRG 519",
+    "source": "1,2"
+  },
+  {
+    "name": "UGC 10683 NED01",
+    "source": "2,3"
+  },
+  {
+    "name": "IC 4501",
+    "source": "2,4"
+  },
+  {
+    "name": "LEDA 1829771",
+    "source": "1,2"
+  },
+  {
+    "name": "MCG -02-06-17",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 2062915",
+    "source": "2,3"
+  },
+  {
+    "name": "M61",
+    "source": "2,3"
+  },
+  {
+    "name": "MCG +11-22-024",
+    "source": "1,3"
+  },
+  {
+    "name": "LEDA 546887",
+    "source": "1,3"
+  },
+  {
+    "name": "NGC 2115",
+    "source": "2,3,5"
+  },
+  {
+    "name": "LEDA 169555",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 160950",
+    "source": "2,3"
+  },
+  {
+    "name": "LEDA 968729",
+    "source": "1,2"
+  }
+]

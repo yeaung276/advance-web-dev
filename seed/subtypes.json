@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Candidate",
+    "source": "3"
+  },
+  {
+    "name": "Ia",
+    "source": "2,3,5"
+  },
+  {
+    "name": "Ic",
+    "source": "2,3"
+  },
+  {
+    "name": "II",
+    "source": "2,3,4"
+  },
+  {
+    "name": "Ia-91bg",
+    "source": "2,3"
+  },
+  {
+    "name": "BL",
+    "source": "1,2"
+  },
+  {
+    "name": "BL Lac",
+    "source": "1"
+  },
+  {
+    "name": "Ib Pec",
+    "source": "2,4"
+  },
+  {
+    "name": "Ib",
+    "source": "3"
+  },
+  {
+    "name": "Afterglow",
+    "source": "1,2"
+  },
+  {
+    "name": "Ia-02cx",
+    "source": "2,3"
+  },
+  {
+    "name": "IIn",
+    "source": "2,3"
+  },
+  {
+    "name": "Ia-91T",
+    "source": "2,3"
+  },
+  {
+    "name": "I",
+    "source": "2,3"
+  },
+  {
+    "name": "Ic BL",
+    "source": "1,2"
+  },
+  {
+    "name": "Star",
+    "source": "1,2"
+  },
+  {
+    "name": "symbiotic star",
+    "source": "1"
+  },
+  {
+    "name": "Ib/c",
+    "source": "2,3"
+  }
+]

@@ -3,7 +3,7 @@ from . import models
 
 @admin.register(models.Galaxy)
 class GalaxyAdmin(admin.ModelAdmin):
-    list_display = ("name", "hostra", "hostdec")
+    list_display = ("name",)
     search_fields = ("name",)
     
     
