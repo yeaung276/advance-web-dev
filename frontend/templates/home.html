@@ -38,6 +38,16 @@
           <pre class="mt-2 mb-0"><code>uv run scripts/bulk_insert.py</code></pre>
         </li>
 
+        <li class="mb-2">
+          Create super user if you create your own fresh sqlite database:
+          <pre class="mt-2 mb-0"><code>uv run manage.py createsuperuser</code></pre>
+        </li>
+
+        <li class="mb-2">
+          Login to admin panel through <a href="/admin/">admin</a> and create normal user for API mutation access.
+          this step is optional. You can use admin credential you created in the earlier step. 
+        </li>
+
         <li>
           Start the development server:
           <pre class="mt-2 mb-0"><code>uv run manage.py runserver</code></pre>
