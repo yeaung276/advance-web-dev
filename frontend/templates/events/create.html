@@ -3,5 +3,171 @@
 {% block title %}Event Search | Supernovae{% endblock %}
 
 {% block content %}
-<div>Coming soon</div>
+
+<!-- Page Header -->
+<div class="mb-5">
+  <h1 class="fw-bold">Create Supernova Event</h1>
+  <p class="text-muted fs-5">
+    Enter event metadata, observed attributes, claimed types, and host galaxy information.
+  </p>
+</div>
+
+<form method="post">
+  {% csrf_token %}
+
+  <!-- Event -->
+  <section class="mb-5">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="fw-semibold mb-3">Event</h3>
+
+        <div class="mb-3">
+          {{ event_form.name.label_tag }}
+          {{ event_form.name }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attributes -->
+  <section class="mb-5">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="fw-semibold mb-3">Attributes</h3>
+
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-3">
+            <thead class="table-light">
+              <tr>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Unit</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody id="attr-body">
+              {% for attr_form in attr_formset %}
+              <tr>
+                <td>{{ attr_form.name }}</td>
+                <td>{{ attr_form.value }}</td>
+                <td>{{ attr_form.unit }}</td>
+                <td>{{ attr_form.source }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {{ attr_formset.management_form }}
+
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          hx-get="{% url 'frontend:htmlx_formset_row' 'attr' %}"
+          hx-target="#attr-body"
+          hx-swap="beforeend"
+          hx-vals='js:{index: document.querySelectorAll("#attr-body tr").length}'
+        >
+          + Add Attribute
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Claimed Type -->
+  <section class="mb-5">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="fw-semibold mb-3">Claimed Supernova Type</h3>
+
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-3">
+            <thead class="table-light">
+              <tr>
+                <th>Subtype</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody id="claimed-type-body">
+              {% for ct_form in claimed_type_formset %}
+              <tr>
+                <td>{{ ct_form.sub_type }}</td>
+                <td>{{ ct_form.source }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {{ claimed_type_formset.management_form }}
+
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          hx-get="{% url 'frontend:htmlx_formset_row' 'claimed-types' %}"
+          hx-target="#claimed-type-body"
+          hx-swap="beforeend"
+          hx-vals='js:{index: document.querySelectorAll("#claimed-type-body tr").length}'
+        >
+          + Add Claimed Type
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Host Galaxy -->
+  <section class="mb-5">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="fw-semibold mb-3">Host Galaxy</h3>
+
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-3">
+            <thead class="table-light">
+              <tr>
+                <th>Galaxy</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody id="host-galaxy-body">
+              {% for hg_form in host_galaxy_formset %}
+              <tr>
+                <td>{{ hg_form.galaxy }}</td>
+                <td>{{ hg_form.source }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {{ host_galaxy_formset.management_form }}
+
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          hx-get="{% url 'frontend:htmlx_formset_row' 'host-galaxy' %}"
+          hx-target="#host-galaxy-body"
+          hx-swap="beforeend"
+          hx-vals='js:{index: document.querySelectorAll("#host-galaxy-body tr").length}'
+        >
+          + Add Host Galaxy
+        </button>
+      </div>
+    </div>
+  </section>
+
+  {{ event_form.management_form }}
+
+  <!-- Submit -->
+<div class="d-flex justify-content-end gap-2 mt-4">
+  <a href="{% url 'frontend:home' %}" class="btn btn-outline-secondary">
+    Cancel
+  </a>
+
+  <button type="submit" class="btn btn-primary px-4">
+    Save Event
+  </button>
+</div>
+</form>
+
 {% endblock %}
