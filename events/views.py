@@ -51,14 +51,8 @@ class EventViewSet(ViewSet):
     )
     def retrieve(self, request, pk=None):
         event = get_object_or_404(models.Event, pk=pk)
-        serializer = serializers.EventDetailSerializer(event)
+        serializer = serializers.EventOSCSchemaSerializer(event)
         return Response(serializer.data)
-
-    # def create(self, request):
-    #     serializer = serializers.EventSerializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     serializer.save()
-    #     return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     
 @api_view(["GET"])

@@ -8,7 +8,7 @@ class EventSerializer(serializers.ModelSerializer):
         fields = ["id", "name"]
 
 
-class EventDetailSerializer(serializers.ModelSerializer):
+class EventOSCSchemaSerializer(serializers.ModelSerializer):
     def to_representation(self, instance: models.Event):
         # Denormalize the detail into original OSC data schema
         sources = []
