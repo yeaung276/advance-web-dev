@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@tpg%x1y-la3ma)dn0ad0&6_(-v&02zhcp&ho*)-4$bmuhk5@!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://advance-web-dev.onrender.com/"
+    "advance-web-dev.onrender.com"
 ]
 
 
