@@ -26,3 +26,6 @@ Password: AC2SoFC2OfTtoITp\\
 `uv run manage.py migrate` to create database.
 `uv run scripts/bulk_import.py` to add seed data.
 
+# Running the tests
+`uv run manage.py test`
+
