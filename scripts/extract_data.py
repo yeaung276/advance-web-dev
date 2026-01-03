@@ -67,7 +67,7 @@ try:
         # one supernova per file
         sn_name, sn = next(iter(data.items()))
 
-        # ---------- COUNT (FAIL FAST) ----------
+        # ---------- COUNT ----------
 
         # supernova itself
         bump(1)

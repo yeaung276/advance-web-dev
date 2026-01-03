@@ -53,13 +53,12 @@ class EventViewSet(ViewSet):
         event = get_object_or_404(models.Event, pk=pk)
         serializer = serializers.EventOSCSchemaSerializer(event)
         return Response(serializer.data)
-    
-    
+
+
 @api_view(["GET"])
 def galaxy_by_supernova_count(request):
     rows = (
-        models.HostGalaxy.objects
-        .select_related("galaxy", "event")
+        models.HostGalaxy.objects.select_related("galaxy", "event")
         .values("galaxy__id", "galaxy__name", "event__name")
         .distinct()
     )
@@ -83,8 +82,7 @@ def galaxy_by_supernova_count(request):
 @api_view(["GET"])
 def galaxy_by_supernova_diversity(request):
     rows = (
-        models.HostGalaxy.objects
-        .select_related("galaxy")
+        models.HostGalaxy.objects.select_related("galaxy")
         .values(
             "galaxy__id",
             "galaxy__name",
@@ -110,32 +108,35 @@ def galaxy_by_supernova_diversity(request):
 
     return Response(data)
 
+
 @api_view(["GET"])
 def supernova_uncertainty(request):
     queryset = (
-        models.Event.objects
-        .values("name")
-        .annotate(
-            subtype_sources=Count("claimed_types__source", distinct=True),
-            host_sources=Count("host_galaxies__source", distinct=True),
+        models.Event.objects.annotate(
+            # original counts
+            distinct_subtypes=Count("claimed_types__sub_type", distinct=True),
+            distinct_hosts=Count("host_galaxies__galaxy", distinct=True),
         )
         .annotate(
-            total_sources=(
-                F("subtype_sources") +
-                F("host_sources") 
-            )
+            total_sources=F("distinct_subtypes") + F("distinct_hosts")
+        )
+        .values(
+            "name",
+            "distinct_subtypes",
+            "distinct_hosts",
+            "total_sources",
         )
         .order_by("-total_sources")
     )
-    
+
     return Response(queryset)
+
 
 @api_view(["GET"])
 def subtype_with_conflicting_sn(request):
     # find events with multiple subtype claims
     conflicted_events = (
-        models.ClaimedType.objects
-        .values("event")
+        models.ClaimedType.objects.values("event")
         .annotate(subtype_count=Count("sub_type", distinct=True))
         .filter(subtype_count__gt=1)
         .values_list("event", flat=True)
@@ -143,12 +144,9 @@ def subtype_with_conflicting_sn(request):
 
     # count how often each subtype appears in conflicted events
     queryset = (
-        models.ClaimedType.objects
-        .filter(event__in=conflicted_events)
+        models.ClaimedType.objects.filter(event__in=conflicted_events)
         .values("sub_type__name")
-        .annotate(
-            conflicted_event_count=Count("event", distinct=True)
-        )
+        .annotate(conflicted_event_count=Count("event", distinct=True))
         .order_by("-conflicted_event_count")
     )
     return Response(queryset)

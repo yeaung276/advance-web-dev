@@ -60,7 +60,7 @@ def create_event(request):
             claimed_type_formset.save()
             host_galaxy_formset.instance = event
             host_galaxy_formset.save()
-            
+
             return redirect("frontend:create_event")
     else:
         event_form = EventForm()
@@ -79,11 +79,13 @@ def create_event(request):
         },
     )
 
+
 FORMSET_MAP = {
     "attr": (AttributeFormSet, "events/partials/attribute.html"),
     "claimed-types": (ClaimedTypeFormSet, "events/partials/claimed-types.html"),
     "host-galaxy": (HostGalaxyFormSet, "events/partials/host-galaxy.html"),
 }
+
 
 def htmlx_formset_row(request, kind):
     if kind not in FORMSET_MAP:
@@ -151,12 +153,20 @@ def event_sn_uncertainty(request):
     top_n = int(request.GET.get("limit", 5))
 
     queryset = (
-        Event.objects.values("name")
-        .annotate(
-            subtype_sources=Count("claimed_types__source", distinct=True),
-            host_sources=Count("host_galaxies__source", distinct=True),
+        Event.objects.annotate(
+            # original counts
+            distinct_subtypes=Count("claimed_types__sub_type", distinct=True),
+            distinct_hosts=Count("host_galaxies__galaxy", distinct=True),
         )
-        .annotate(total_sources=(F("subtype_sources") + F("host_sources")))
+        .annotate(
+            total_sources=F("distinct_subtypes") + F("distinct_hosts")
+        )
+        .values(
+            "name",
+            "distinct_subtypes",
+            "distinct_hosts",
+            "total_sources",
+        )
         .order_by("-total_sources")[:top_n]
     )
 
